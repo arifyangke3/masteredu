@@ -490,23 +490,29 @@ export function exportResultsToExcel(results: GameResult[], gameTitle: string) {
   XLSX.writeFile(wb, filename);
 }
 
+function escapeCsvCell(val: any): string {
+  if (val === null || val === undefined) return '""';
+  const str = String(val).replace(/"/g, '""');
+  return `"${str}"`;
+}
+
 // Export Game Results to CSV
 export function exportResultsToCSV(results: GameResult[], gameTitle: string) {
   const rows = results.map((r, i) => [
     i + 1,
-    `"${r.studentName}"`,
-    `"${r.teamName || '-'}"`,
-    `"${r.gameCode}"`,
-    `"${r.gameTitle}"`,
-    `"${r.subject}"`,
+    escapeCsvCell(r.studentName),
+    escapeCsvCell(r.teamName || '-'),
+    escapeCsvCell(r.gameCode),
+    escapeCsvCell(r.gameTitle),
+    escapeCsvCell(r.subject),
     r.score,
     r.maxScore,
-    `${r.percentage}%`,
+    `"${r.percentage}%"`,
     r.correctCount,
     r.wrongCount,
     r.unansweredCount,
     r.timeSpentSeconds,
-    `"${r.completedAt}"`
+    escapeCsvCell(r.completedAt)
   ].join(','));
 
   const header = 'No,Nama Siswa,Tim/Kelas,Kode Game,Judul Game,Mata Pelajaran,Skor,Skor Maks,Persentase,Benar,Salah,Tidak Dijawab,Waktu (detik),Tanggal';
