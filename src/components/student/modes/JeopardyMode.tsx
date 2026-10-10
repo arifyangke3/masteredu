@@ -26,7 +26,7 @@ export const JeopardyMode: React.FC<JeopardyModeProps> = ({
   const [tiles, setTiles] = useState<TileState[]>(() =>
     questions.map((q, idx) => ({
       questionId: q.id,
-      points: (idx + 1) * 100,
+      points: q.points ? q.points : (idx + 1) * 100,
       isAnswered: false,
     }))
   );

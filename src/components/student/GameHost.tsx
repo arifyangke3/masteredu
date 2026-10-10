@@ -205,8 +205,12 @@ export const GameHost: React.FC<GameHostProps> = ({
     const elapsedSeconds = Math.max(1, Math.round((Date.now() - startTime) / 1000));
 
     const correctCount = finalAnswers.filter((a) => a.isCorrect === true).length;
-    const wrongCount = finalAnswers.filter((a) => a.isCorrect === false).length;
-    const unansweredCount = gameQuestions.length - finalAnswers.length;
+    const unansweredCount =
+      finalAnswers.filter((a) => a.userAnswer === '(Waktu Habis)').length +
+      (gameQuestions.length - finalAnswers.length);
+    const wrongCount = finalAnswers.filter(
+      (a) => a.isCorrect === false && a.userAnswer !== '(Waktu Habis)'
+    ).length;
 
     const totalMaxScore = gameQuestions.reduce(
       (acc, q) => acc + (q.points || game.pointsPerCorrect || 100),

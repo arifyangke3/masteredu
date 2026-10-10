@@ -22,7 +22,8 @@ export const WordScrambleMode: React.FC<WordScrambleModeProps> = ({
   soundEnabled,
   showExplanationMode,
 }) => {
-  const targetWord = String(question.correctAnswer || 'JAWABAN').toUpperCase().replace(/[^A-Z0-9]/g, '');
+  const cleaned = String(question.correctAnswer || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+  const targetWord = cleaned.length > 0 ? cleaned : 'JAWABAN';
 
   const [tiles, setTiles] = useState<LetterTile[]>([]);
   const [selectedTileIds, setSelectedTileIds] = useState<string[]>([]);
