@@ -1,0 +1,6 @@
+{
+  "name": "EDU GAME MASTER",
+  "description": "Platform Game Pembelajaran Interaktif Universal untuk semua jenjang (PAUD, SD, SMP, SMA/SMK) dengan Dashboard Guru, bank soal universal, beragam mode game interaktif, dan rekap penilaian otomatis.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
