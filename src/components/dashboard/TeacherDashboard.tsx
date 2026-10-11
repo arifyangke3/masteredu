@@ -433,15 +433,17 @@ export const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
                       <div className="flex items-center gap-1">
                         <button
                           onClick={() => setEditingGame(g)}
-                          className="p-1 text-slate-400 hover:text-indigo-600 rounded"
+                          className="p-1 text-slate-400 hover:text-indigo-600 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
                           title="Edit Pengaturan"
+                          aria-label={`Edit pengaturan game ${g.title}`}
                         >
                           <Edit3 className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => duplicateGame(g.id)}
-                          className="p-1 text-slate-400 hover:text-slate-700 rounded"
+                          className="p-1 text-slate-400 hover:text-slate-700 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
                           title="Duplikat Game"
+                          aria-label={`Duplikat game ${g.title}`}
                         >
                           <CopyPlus className="w-4 h-4" />
                         </button>
@@ -451,8 +453,9 @@ export const TeacherDashboard: React.FC<TeacherDashboardProps> = ({
                               deleteGame(g.id);
                             }
                           }}
-                          className="p-1 text-slate-400 hover:text-rose-600 rounded"
+                          className="p-1 text-slate-400 hover:text-rose-600 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
                           title="Hapus Game"
+                          aria-label={`Hapus game ${g.title}`}
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
