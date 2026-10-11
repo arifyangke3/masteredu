@@ -99,8 +99,8 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             onClick={() => setSoundEnabled(!soundEnabled)}
             title={soundEnabled ? 'Matikan Suara FX' : 'Aktifkan Suara FX'}
-            className="p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors border border-slate-200"
-            aria-label="Toggle Sound"
+            className="p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-100 focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-lg transition-colors border border-slate-200"
+            aria-label={soundEnabled ? 'Matikan Suara FX' : 'Aktifkan Suara FX'}
           >
             {soundEnabled ? <Volume2 className="w-4 h-4 text-emerald-600" /> : <VolumeX className="w-4 h-4 text-slate-400" />}
           </button>

@@ -488,8 +488,9 @@ export const QuestionBankView: React.FC = () => {
                   <div className="flex items-center gap-1 shrink-0 self-end sm:self-start">
                     <button
                       onClick={() => setEditingQuestion(q)}
-                      className="p-1.5 text-slate-500 hover:text-indigo-600 hover:bg-slate-100 rounded-lg transition-colors"
+                      className="p-1.5 text-slate-500 hover:text-indigo-600 hover:bg-slate-100 focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-lg transition-colors"
                       title="Edit Soal"
+                      aria-label={`Edit soal: ${q.question}`}
                     >
                       <Edit3 className="w-4 h-4" />
                     </button>
@@ -499,8 +500,9 @@ export const QuestionBankView: React.FC = () => {
                           deleteQuestion(q.id);
                         }
                       }}
-                      className="p-1.5 text-slate-500 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
+                      className="p-1.5 text-slate-500 hover:text-rose-600 hover:bg-rose-50 focus-visible:ring-2 focus-visible:ring-rose-500 rounded-lg transition-colors"
                       title="Hapus Soal"
+                      aria-label={`Hapus soal: ${q.question}`}
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
