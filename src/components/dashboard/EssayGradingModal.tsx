@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Check, Award, MessageSquare } from 'lucide-react';
 import { GameResult, StudentAnswerRecord } from '../../types';
 
@@ -29,6 +29,14 @@ export const EssayGradingModal: React.FC<EssayGradingModalProps> = ({
   );
   const [saveSuccess, setSaveSuccess] = useState(false);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
+
   const handleSelectQuestion = (qId: string) => {
     setActiveQuestionId(qId);
     const ans = essayAnswers.find((a) => a.questionId === qId);
@@ -48,7 +56,11 @@ export const EssayGradingModal: React.FC<EssayGradingModalProps> = ({
 
   if (essayAnswers.length === 0) {
     return (
-      <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+      <div
+        role="dialog"
+        aria-modal="true"
+        className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4"
+      >
         <div className="bg-white rounded-2xl p-6 max-w-md w-full text-center">
           <p className="text-sm font-semibold text-slate-800">
             Tidak ada butir soal uraian/essay pada sesi pengerjaan ini.
@@ -65,7 +77,11 @@ export const EssayGradingModal: React.FC<EssayGradingModalProps> = ({
   }
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div
+      role="dialog"
+      aria-modal="true"
+      className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4"
+    >
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-2xl overflow-hidden border border-slate-200">
         <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
           <div>
@@ -78,6 +94,7 @@ export const EssayGradingModal: React.FC<EssayGradingModalProps> = ({
           </div>
           <button
             onClick={onClose}
+            aria-label="Tutup modal"
             className="p-1.5 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-200/60 transition-colors"
           >
             <X className="w-5 h-5" />

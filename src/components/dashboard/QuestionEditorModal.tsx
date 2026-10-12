@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Plus, Trash2, CheckCircle2 } from 'lucide-react';
 import { Question, QuestionType, EducationLevel, DifficultyLevel, MatchingPair } from '../../types';
 
@@ -47,6 +47,14 @@ export const QuestionEditorModal: React.FC<QuestionEditorModalProps> = ({
   );
 
   const [errorMessage, setErrorMessage] = useState('');
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
 
   const handleAddOption = () => {
     if (options.length < 6) {
@@ -150,7 +158,11 @@ export const QuestionEditorModal: React.FC<QuestionEditorModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div
+      role="dialog"
+      aria-modal="true"
+      className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4"
+    >
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-3xl overflow-hidden border border-slate-200 animate-in fade-in zoom-in-95 duration-150">
         {/* Header */}
         <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
@@ -164,6 +176,7 @@ export const QuestionEditorModal: React.FC<QuestionEditorModalProps> = ({
           </div>
           <button
             onClick={onClose}
+            aria-label="Tutup modal"
             className="p-1.5 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-200/60 transition-colors"
           >
             <X className="w-5 h-5" />
@@ -360,6 +373,7 @@ export const QuestionEditorModal: React.FC<QuestionEditorModalProps> = ({
                         <button
                           type="button"
                           onClick={() => handleRemoveOption(idx)}
+                          aria-label={`Hapus pilihan ${letter}`}
                           className="p-1.5 text-slate-400 hover:text-rose-600 transition-colors"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -467,6 +481,7 @@ export const QuestionEditorModal: React.FC<QuestionEditorModalProps> = ({
                       <button
                         type="button"
                         onClick={() => handleRemovePair(pIdx)}
+                        aria-label={`Hapus pasangan ${pIdx + 1}`}
                         className="p-1 text-slate-400 hover:text-rose-600 transition-colors"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
