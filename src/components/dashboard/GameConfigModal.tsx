@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   X,
   Zap,
@@ -72,6 +72,14 @@ export const GameConfigModal: React.FC<GameConfigModalProps> = ({
   const [qSearch, setQSearch] = useState('');
   const [qLevelFilter, setQLevelFilter] = useState<string>(educationLevel);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
+
   const filteredQuestionsForSelect = questions.filter((q) => {
     const matchesSearch =
       q.question.toLowerCase().includes(qSearch.toLowerCase()) ||
@@ -133,7 +141,11 @@ export const GameConfigModal: React.FC<GameConfigModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div
+      role="dialog"
+      aria-modal="true"
+      className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4"
+    >
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-4xl overflow-hidden border border-slate-200">
         {/* Header */}
         <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
@@ -147,6 +159,7 @@ export const GameConfigModal: React.FC<GameConfigModalProps> = ({
           </div>
           <button
             onClick={onClose}
+            aria-label="Tutup modal"
             className="p-1.5 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-200/60 transition-colors"
           >
             <X className="w-5 h-5" />
