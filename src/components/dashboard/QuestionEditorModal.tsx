@@ -340,12 +340,14 @@ export const QuestionEditorModal: React.FC<QuestionEditorModalProps> = ({
                       <button
                         type="button"
                         onClick={() => setCorrectAnswer(opt)}
-                        className={`w-7 h-7 shrink-0 rounded-lg text-xs font-bold flex items-center justify-center transition-colors ${
+                        className={`w-7 h-7 shrink-0 rounded-lg text-xs font-bold flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-1 ${
                           isSelectedKey
                             ? 'bg-emerald-600 text-white shadow-sm'
                             : 'bg-white border border-slate-300 text-slate-600 hover:border-emerald-500'
                         }`}
                         title={isSelectedKey ? 'Kunci Jawaban Terpilih' : 'Klik untuk jadikan kunci jawaban'}
+                        aria-label={`Opsi ${letter}: ${isSelectedKey ? 'Kunci jawaban terpilih' : 'Tandai sebagai kunci jawaban'}`}
+                        aria-pressed={isSelectedKey}
                       >
                         {isSelectedKey ? '✓' : letter}
                       </button>
