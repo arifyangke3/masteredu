@@ -271,6 +271,7 @@ export const QuestionBankView: React.FC = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Cari berdasarkan soal, materi, mata pelajaran..."
             className="w-full text-xs pl-9 pr-3 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            aria-label="Cari soal"
           />
         </div>
 
@@ -488,8 +489,9 @@ export const QuestionBankView: React.FC = () => {
                   <div className="flex items-center gap-1 shrink-0 self-end sm:self-start">
                     <button
                       onClick={() => setEditingQuestion(q)}
-                      className="p-1.5 text-slate-500 hover:text-indigo-600 hover:bg-slate-100 rounded-lg transition-colors"
+                      className="p-1.5 text-slate-500 hover:text-indigo-600 hover:bg-slate-100 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
                       title="Edit Soal"
+                      aria-label={`Edit soal ${index + 1}`}
                     >
                       <Edit3 className="w-4 h-4" />
                     </button>
@@ -499,8 +501,9 @@ export const QuestionBankView: React.FC = () => {
                           deleteQuestion(q.id);
                         }
                       }}
-                      className="p-1.5 text-slate-500 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
+                      className="p-1.5 text-slate-500 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-500"
                       title="Hapus Soal"
+                      aria-label={`Hapus soal ${index + 1}`}
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
