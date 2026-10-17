@@ -490,6 +490,7 @@ export const QuestionBankView: React.FC = () => {
                       onClick={() => setEditingQuestion(q)}
                       className="p-1.5 text-slate-500 hover:text-indigo-600 hover:bg-slate-100 rounded-lg transition-colors"
                       title="Edit Soal"
+                      aria-label="Edit Soal"
                     >
                       <Edit3 className="w-4 h-4" />
                     </button>
@@ -501,6 +502,7 @@ export const QuestionBankView: React.FC = () => {
                       }}
                       className="p-1.5 text-slate-500 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
                       title="Hapus Soal"
+                      aria-label="Hapus Soal"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
