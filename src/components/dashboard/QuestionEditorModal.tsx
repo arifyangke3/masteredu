@@ -164,7 +164,8 @@ export const QuestionEditorModal: React.FC<QuestionEditorModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-200/60 transition-colors"
+            className="p-1.5 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-200/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+            aria-label="Tutup modal"
           >
             <X className="w-5 h-5" />
           </button>
@@ -360,7 +361,8 @@ export const QuestionEditorModal: React.FC<QuestionEditorModalProps> = ({
                         <button
                           type="button"
                           onClick={() => handleRemoveOption(idx)}
-                          className="p-1.5 text-slate-400 hover:text-rose-600 transition-colors"
+                          className="p-1.5 text-slate-400 hover:text-rose-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 rounded-lg"
+                          aria-label={`Hapus Opsi ${letter}`}
                         >
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>
@@ -467,7 +469,8 @@ export const QuestionEditorModal: React.FC<QuestionEditorModalProps> = ({
                       <button
                         type="button"
                         onClick={() => handleRemovePair(pIdx)}
-                        className="p-1 text-slate-400 hover:text-rose-600 transition-colors"
+                        className="p-1 text-slate-400 hover:text-rose-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 rounded-lg"
+                        aria-label={`Hapus Pasangan ${pIdx + 1}`}
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
