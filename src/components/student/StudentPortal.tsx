@@ -89,10 +89,11 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({
 
           {/* Game PIN Input */}
           <div>
-            <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wider">
+            <label htmlFor="student-pin-code" className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wider">
               Kode Permainan (PIN)
             </label>
             <input
+              id="student-pin-code"
               type="text"
               value={pinCode}
               onChange={(e) => setPinCode(e.target.value.toUpperCase())}
@@ -105,10 +106,11 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({
 
           {/* Student Name Input */}
           <div>
-            <label className="block text-xs font-bold text-slate-700 mb-1.5">
+            <label htmlFor="student-name-input" className="block text-xs font-bold text-slate-700 mb-1.5">
               Nama Siswa / Panggilan
             </label>
             <input
+              id="student-name-input"
               type="text"
               value={studentName}
               onChange={(e) => setStudentName(e.target.value)}
@@ -120,10 +122,11 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({
 
           {/* Optional Team / Class Input */}
           <div>
-            <label className="block text-xs font-semibold text-slate-500 mb-1">
+            <label htmlFor="student-team-name" className="block text-xs font-semibold text-slate-500 mb-1">
               Nama Regu / Kelas (Opsional)
             </label>
             <input
+              id="student-team-name"
               type="text"
               value={teamName}
               onChange={(e) => setTeamName(e.target.value)}
@@ -160,10 +163,12 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({
             const isCurrentPin = pinCode === g.code;
 
             return (
-              <div
+              <button
+                type="button"
                 key={g.id}
                 onClick={() => handleQuickSelectGame(g)}
-                className={`p-4 rounded-2xl border-2 cursor-pointer transition-all flex flex-col justify-between space-y-3 ${
+                aria-label={`Pilih permainan PIN ${g.code}: ${g.title}`}
+                className={`p-4 rounded-2xl border-2 cursor-pointer transition-all flex flex-col justify-between space-y-3 text-left w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${
                   isCurrentPin
                     ? 'border-indigo-600 bg-indigo-50/50 shadow-xs ring-1 ring-indigo-500'
                     : 'border-slate-200 hover:border-indigo-300 bg-white hover:bg-slate-50/50'
@@ -187,7 +192,7 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({
                   </p>
                 </div>
 
-                <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+                <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 w-full">
                   <span className="font-medium text-slate-700">
                     {modeMeta?.title || g.gameMode}
                   </span>
@@ -195,7 +200,7 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({
                     Pilih Game <ArrowRight className="w-3 h-3" />
                   </span>
                 </div>
-              </div>
+              </button>
             );
           })}
         </div>
