@@ -270,6 +270,7 @@ export const QuestionBankView: React.FC = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Cari berdasarkan soal, materi, mata pelajaran..."
+            aria-label="Cari berdasarkan soal, materi, mata pelajaran"
             className="w-full text-xs pl-9 pr-3 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           />
         </div>
@@ -280,6 +281,7 @@ export const QuestionBankView: React.FC = () => {
           <select
             value={filterLevel}
             onChange={(e) => setFilterLevel(e.target.value)}
+            aria-label="Filter berdasarkan jenjang pendidikan"
             className="text-xs px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           >
             <option value="all">Semua Jenjang</option>
@@ -293,6 +295,7 @@ export const QuestionBankView: React.FC = () => {
           <select
             value={filterType}
             onChange={(e) => setFilterType(e.target.value)}
+            aria-label="Filter berdasarkan tipe soal"
             className="text-xs px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           >
             <option value="all">Semua Tipe Soal</option>
@@ -309,6 +312,7 @@ export const QuestionBankView: React.FC = () => {
           <select
             value={filterDifficulty}
             onChange={(e) => setFilterDifficulty(e.target.value)}
+            aria-label="Filter berdasarkan tingkat kesulitan"
             className="text-xs px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           >
             <option value="all">Semua Kesulitan</option>
@@ -490,6 +494,7 @@ export const QuestionBankView: React.FC = () => {
                       onClick={() => setEditingQuestion(q)}
                       className="p-1.5 text-slate-500 hover:text-indigo-600 hover:bg-slate-100 rounded-lg transition-colors"
                       title="Edit Soal"
+                      aria-label="Edit Soal"
                     >
                       <Edit3 className="w-4 h-4" />
                     </button>
@@ -501,6 +506,7 @@ export const QuestionBankView: React.FC = () => {
                       }}
                       className="p-1.5 text-slate-500 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
                       title="Hapus Soal"
+                      aria-label="Hapus Soal"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
