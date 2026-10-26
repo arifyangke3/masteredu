@@ -195,11 +195,19 @@ export const QuestionBankView: React.FC = () => {
         <div className="mt-5 pt-5 border-t border-slate-100 grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* File Upload Box */}
           <div
+            role="button"
+            tabIndex={0}
             onClick={() => fileInputRef.current?.click()}
-            className="border-2 border-dashed border-slate-200 hover:border-indigo-400 bg-slate-50/50 hover:bg-indigo-50/30 rounded-xl p-4 flex items-center gap-4 cursor-pointer transition-all group"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                fileInputRef.current?.click();
+              }
+            }}
+            className="border-2 border-dashed border-slate-200 hover:border-indigo-400 focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:outline-none bg-slate-50/50 hover:bg-indigo-50/30 rounded-xl p-4 flex items-center gap-4 cursor-pointer transition-all group"
           >
             <div className="w-10 h-10 rounded-xl bg-indigo-100 flex items-center justify-center text-indigo-600 shrink-0 group-hover:scale-105 transition-transform">
-              <Upload className="w-5 h-5" />
+              <Upload className="w-5 h-5" aria-hidden="true" />
             </div>
             <div className="flex-1 min-w-0">
               <div className="text-xs font-bold text-slate-800">
@@ -220,8 +228,16 @@ export const QuestionBankView: React.FC = () => {
 
           {/* Paste Text Box */}
           <div
+            role="button"
+            tabIndex={0}
             onClick={() => setShowPasteModal(true)}
-            className="border-2 border-dashed border-slate-200 hover:border-sky-400 bg-slate-50/50 hover:bg-sky-50/30 rounded-xl p-4 flex items-center gap-4 cursor-pointer transition-all group"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                setShowPasteModal(true);
+              }
+            }}
+            className="border-2 border-dashed border-slate-200 hover:border-sky-400 focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:outline-none bg-slate-50/50 hover:bg-sky-50/30 rounded-xl p-4 flex items-center gap-4 cursor-pointer transition-all group"
           >
             <div className="w-10 h-10 rounded-xl bg-sky-100 flex items-center justify-center text-sky-600 shrink-0 group-hover:scale-105 transition-transform">
               <FileText className="w-5 h-5" />
@@ -264,12 +280,13 @@ export const QuestionBankView: React.FC = () => {
       <div className="bg-white rounded-2xl border border-slate-200 p-4 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-3">
         {/* Search Input */}
         <div className="relative flex-1 max-w-md">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" aria-hidden="true" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Cari berdasarkan soal, materi, mata pelajaran..."
+            aria-label="Cari soal"
             className="w-full text-xs pl-9 pr-3 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           />
         </div>
@@ -280,6 +297,7 @@ export const QuestionBankView: React.FC = () => {
           <select
             value={filterLevel}
             onChange={(e) => setFilterLevel(e.target.value)}
+            aria-label="Filter jenjang pendidikan"
             className="text-xs px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           >
             <option value="all">Semua Jenjang</option>
@@ -293,6 +311,7 @@ export const QuestionBankView: React.FC = () => {
           <select
             value={filterType}
             onChange={(e) => setFilterType(e.target.value)}
+            aria-label="Filter tipe soal"
             className="text-xs px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           >
             <option value="all">Semua Tipe Soal</option>
@@ -309,6 +328,7 @@ export const QuestionBankView: React.FC = () => {
           <select
             value={filterDifficulty}
             onChange={(e) => setFilterDifficulty(e.target.value)}
+            aria-label="Filter tingkat kesulitan"
             className="text-xs px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           >
             <option value="all">Semua Kesulitan</option>
@@ -488,10 +508,11 @@ export const QuestionBankView: React.FC = () => {
                   <div className="flex items-center gap-1 shrink-0 self-end sm:self-start">
                     <button
                       onClick={() => setEditingQuestion(q)}
-                      className="p-1.5 text-slate-500 hover:text-indigo-600 hover:bg-slate-100 rounded-lg transition-colors"
+                      className="p-1.5 text-slate-500 hover:text-indigo-600 hover:bg-slate-100 focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-lg transition-colors"
                       title="Edit Soal"
+                      aria-label={`Edit soal nomor ${index + 1}`}
                     >
-                      <Edit3 className="w-4 h-4" />
+                      <Edit3 className="w-4 h-4" aria-hidden="true" />
                     </button>
                     <button
                       onClick={() => {
@@ -499,10 +520,11 @@ export const QuestionBankView: React.FC = () => {
                           deleteQuestion(q.id);
                         }
                       }}
-                      className="p-1.5 text-slate-500 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
+                      className="p-1.5 text-slate-500 hover:text-rose-600 hover:bg-rose-50 focus-visible:ring-2 focus-visible:ring-rose-500 rounded-lg transition-colors"
                       title="Hapus Soal"
+                      aria-label={`Hapus soal nomor ${index + 1}`}
                     >
-                      <Trash2 className="w-4 h-4" />
+                      <Trash2 className="w-4 h-4" aria-hidden="true" />
                     </button>
                   </div>
                 </div>

@@ -1,0 +1,3 @@
+## 2025-05-18 - Interactive Dropzones and Unlabeled Controls
+**Learning:** Custom interactive elements (such as `<div>` file dropzones or cards) that lack `role="button"`, `tabIndex={0}`, or keyboard listeners (Enter/Space) prevent screen reader and keyboard-only users from interacting with primary features. Filter `<select>` elements and search `<input>` elements without explicit `aria-label`s are difficult for screen reader users to identify in complex dashboard layouts.
+**Action:** Ensure all interactive `<div>` elements have `role="button"`, `tabIndex={0}`, keyboard handlers, and visible focus rings (`focus-visible:ring-2`), and always add `aria-label` attributes to filter controls and icon-only action buttons.
