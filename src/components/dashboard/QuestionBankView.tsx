@@ -270,7 +270,8 @@ export const QuestionBankView: React.FC = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Cari berdasarkan soal, materi, mata pelajaran..."
-            className="w-full text-xs pl-9 pr-3 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            aria-label="Cari soal"
+            className="w-full text-xs pl-9 pr-3 py-2 rounded-xl border border-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
           />
         </div>
 
@@ -280,7 +281,8 @@ export const QuestionBankView: React.FC = () => {
           <select
             value={filterLevel}
             onChange={(e) => setFilterLevel(e.target.value)}
-            className="text-xs px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            aria-label="Filter Jenjang Pendidikan"
+            className="text-xs px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
           >
             <option value="all">Semua Jenjang</option>
             <option value="PAUD">PAUD / TK</option>
@@ -293,7 +295,8 @@ export const QuestionBankView: React.FC = () => {
           <select
             value={filterType}
             onChange={(e) => setFilterType(e.target.value)}
-            className="text-xs px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            aria-label="Filter Tipe Soal"
+            className="text-xs px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
           >
             <option value="all">Semua Tipe Soal</option>
             <option value="multiple_choice">Pilihan Ganda</option>
@@ -309,7 +312,8 @@ export const QuestionBankView: React.FC = () => {
           <select
             value={filterDifficulty}
             onChange={(e) => setFilterDifficulty(e.target.value)}
-            className="text-xs px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            aria-label="Filter Tingkat Kesulitan"
+            className="text-xs px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
           >
             <option value="all">Semua Kesulitan</option>
             <option value="mudah">Mudah</option>
@@ -488,8 +492,9 @@ export const QuestionBankView: React.FC = () => {
                   <div className="flex items-center gap-1 shrink-0 self-end sm:self-start">
                     <button
                       onClick={() => setEditingQuestion(q)}
-                      className="p-1.5 text-slate-500 hover:text-indigo-600 hover:bg-slate-100 rounded-lg transition-colors"
+                      className="p-1.5 text-slate-500 hover:text-indigo-600 hover:bg-slate-100 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
                       title="Edit Soal"
+                      aria-label="Edit soal"
                     >
                       <Edit3 className="w-4 h-4" />
                     </button>
@@ -499,8 +504,9 @@ export const QuestionBankView: React.FC = () => {
                           deleteQuestion(q.id);
                         }
                       }}
-                      className="p-1.5 text-slate-500 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
+                      className="p-1.5 text-slate-500 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
                       title="Hapus Soal"
+                      aria-label="Hapus soal"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
