@@ -165,6 +165,7 @@ export const QuestionEditorModal: React.FC<QuestionEditorModalProps> = ({
           <button
             onClick={onClose}
             className="p-1.5 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-200/60 transition-colors"
+            aria-label="Tutup modal"
           >
             <X className="w-5 h-5" />
           </button>
@@ -361,6 +362,7 @@ export const QuestionEditorModal: React.FC<QuestionEditorModalProps> = ({
                           type="button"
                           onClick={() => handleRemoveOption(idx)}
                           className="p-1.5 text-slate-400 hover:text-rose-600 transition-colors"
+                          aria-label={`Hapus pilihan ${letter}`}
                         >
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>
@@ -468,6 +470,7 @@ export const QuestionEditorModal: React.FC<QuestionEditorModalProps> = ({
                         type="button"
                         onClick={() => handleRemovePair(pIdx)}
                         className="p-1 text-slate-400 hover:text-rose-600 transition-colors"
+                        aria-label={`Hapus pasangan ${pIdx + 1}`}
                       >
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
