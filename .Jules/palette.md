@@ -1,0 +1,3 @@
+## 2025-05-15 - Student Game PIN Input Accessibility & Interaction
+**Learning:** In educational game applications where young students input uppercase game PINs, automatic uppercase text transforms without explicit mobile input hints (`autoCapitalize="characters"`, `spellCheck={false}`) and lacking a one-tap clear button leads to tedious corrections on touch devices and keyboards. Additionally, pairing the input with explicit `htmlFor` and error alert announcements (`role="alert"`, `aria-live="polite"`) significantly improves screen reader comprehension.
+**Action:** Always provide explicit label associations, clear buttons with accessible `aria-label`, and `role="alert"` for live validation banners on game code/PIN entry flows.
