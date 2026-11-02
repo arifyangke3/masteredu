@@ -1,0 +1,3 @@
+## 2026-11-02 - Form controls & Interactive Cards Accessibility Pattern
+**Learning:** In student and classroom portals, interactive cards used for quick-selection often lack keyboard listeners and ARIA states, while form inputs lacked programmatic `<label htmlFor>` connections, isolating keyboard and screen reader users.
+**Action:** When creating card-based selection elements, always add `role="button"`, `tabIndex={0}`, `aria-pressed`, `aria-label`, focus-visible styles, and Enter/Space `onKeyDown` handlers. Ensure form fields pair with explicit label `htmlFor`/`id` and error messages use `role="alert"` + `aria-describedby`.
