@@ -1,0 +1,3 @@
+## 2025-05-14 - Semantic interactive cards & form controls in Student Portal
+**Learning:** Interactive cards that trigger form prefilling (e.g., quick-select game pins) were rendered as plain clickable `<div>`s without `tabindex`, keyboard support, or ARIA attributes, while inputs lacked `id`/`htmlFor` associations and error alerts weren't linked via `aria-describedby`.
+**Action:** Always replace clickable selection cards with semantic `<button type="button">` having `focus-visible:ring-2`, appropriate `aria-label`/`aria-pressed`, and explicitly pair `<label>` with `<input>` using `htmlFor`/`id` along with `role="alert"` and `aria-describedby` for validation.
