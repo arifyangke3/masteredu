@@ -1,0 +1,3 @@
+## 2025-05-18 - Accessible Interactive Selection Cards in Student Portals
+**Learning:** Interactive cards used to select active games or options should be semantic `<button type="button">` elements with visible focus rings (`focus-visible:ring-2`) and `aria-pressed` states rather than `div` tags with `onClick`. Additionally, when selecting a card populates a required field (like a PIN code), auto-focusing the subsequent empty field (student name) eliminates friction and guides the user directly to the next input step.
+**Action:** When creating quick-select cards or grid options, always use semantic buttons with accessible labels, explicit pressed state, and smart focus transition to next required fields.
