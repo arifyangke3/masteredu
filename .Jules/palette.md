@@ -1,0 +1,3 @@
+## 2026-11-06 - Accessible Card Buttons & Form Association Pattern
+**Learning:** Interactive selection cards in grid layouts should always be rendered as semantic `<button type="button">` with `aria-pressed`, descriptive `aria-label`, and `focus-visible:ring-2` rather than `<div>` with `onClick`, allowing seamless keyboard navigation and screen-reader accessibility for students.
+**Action:** Replace clickable card containers with semantic `<button type="button">` and explicit focus rings, and ensure all form inputs have matching `htmlFor`/`id` labels with `role="alert"` live regions for validation.
