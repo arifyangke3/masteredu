@@ -82,17 +82,18 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({
       <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm max-w-lg mx-auto">
         <form onSubmit={handleSubmit} className="space-y-4">
           {errorMessage && (
-            <div className="p-3 bg-rose-50 border border-rose-200 rounded-xl text-rose-700 text-xs font-semibold">
+            <div role="alert" className="p-3 bg-rose-50 border border-rose-200 rounded-xl text-rose-700 text-xs font-semibold">
               {errorMessage}
             </div>
           )}
 
           {/* Game PIN Input */}
           <div>
-            <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wider">
+            <label htmlFor="game-pin-input" className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wider">
               Kode Permainan (PIN)
             </label>
             <input
+              id="game-pin-input"
               type="text"
               value={pinCode}
               onChange={(e) => setPinCode(e.target.value.toUpperCase())}
@@ -105,10 +106,11 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({
 
           {/* Student Name Input */}
           <div>
-            <label className="block text-xs font-bold text-slate-700 mb-1.5">
+            <label htmlFor="student-name-input" className="block text-xs font-bold text-slate-700 mb-1.5">
               Nama Siswa / Panggilan
             </label>
             <input
+              id="student-name-input"
               type="text"
               value={studentName}
               onChange={(e) => setStudentName(e.target.value)}
@@ -120,10 +122,11 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({
 
           {/* Optional Team / Class Input */}
           <div>
-            <label className="block text-xs font-semibold text-slate-500 mb-1">
+            <label htmlFor="team-name-input" className="block text-xs font-semibold text-slate-500 mb-1">
               Nama Regu / Kelas (Opsional)
             </label>
             <input
+              id="team-name-input"
               type="text"
               value={teamName}
               onChange={(e) => setTeamName(e.target.value)}
@@ -160,16 +163,19 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({
             const isCurrentPin = pinCode === g.code;
 
             return (
-              <div
+              <button
+                type="button"
                 key={g.id}
                 onClick={() => handleQuickSelectGame(g)}
-                className={`p-4 rounded-2xl border-2 cursor-pointer transition-all flex flex-col justify-between space-y-3 ${
+                aria-label={`Pilih permainan ${g.title}, PIN ${g.code}, jenjang ${g.educationLevel} ${g.grade}`}
+                aria-pressed={isCurrentPin}
+                className={`p-4 rounded-2xl border-2 text-left cursor-pointer transition-all flex flex-col justify-between space-y-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 ${
                   isCurrentPin
                     ? 'border-indigo-600 bg-indigo-50/50 shadow-xs ring-1 ring-indigo-500'
                     : 'border-slate-200 hover:border-indigo-300 bg-white hover:bg-slate-50/50'
                 }`}
               >
-                <div>
+                <div className="w-full">
                   <div className="flex items-center justify-between gap-2 mb-1.5">
                     <span className="text-[10px] font-bold text-indigo-700 uppercase">
                       {g.educationLevel} · {g.grade}
@@ -187,15 +193,15 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({
                   </p>
                 </div>
 
-                <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+                <div className="w-full pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
                   <span className="font-medium text-slate-700">
                     {modeMeta?.title || g.gameMode}
                   </span>
                   <span className="text-indigo-600 font-bold flex items-center gap-1">
-                    Pilih Game <ArrowRight className="w-3 h-3" />
+                    {isCurrentPin ? 'PIN Terpilih' : 'Pilih Game'} <ArrowRight className="w-3 h-3" aria-hidden="true" />
                   </span>
                 </div>
-              </div>
+              </button>
             );
           })}
         </div>
