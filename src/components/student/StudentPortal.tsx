@@ -82,22 +82,32 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({
       <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm max-w-lg mx-auto">
         <form onSubmit={handleSubmit} className="space-y-4">
           {errorMessage && (
-            <div className="p-3 bg-rose-50 border border-rose-200 rounded-xl text-rose-700 text-xs font-semibold">
+            <div
+              role="alert"
+              aria-live="polite"
+              className="p-3 bg-rose-50 border border-rose-200 rounded-xl text-rose-700 text-xs font-semibold"
+            >
               {errorMessage}
             </div>
           )}
 
           {/* Game PIN Input */}
           <div>
-            <label className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wider">
+            <label
+              htmlFor="game-pin-input"
+              className="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wider"
+            >
               Kode Permainan (PIN)
             </label>
             <input
+              id="game-pin-input"
               type="text"
               value={pinCode}
               onChange={(e) => setPinCode(e.target.value.toUpperCase())}
               placeholder="Contoh: SD8821"
               maxLength={8}
+              autoComplete="off"
+              spellCheck={false}
               className="w-full text-center text-xl sm:text-2xl font-black tracking-widest uppercase py-3.5 px-4 rounded-2xl border-2 border-slate-200 focus:outline-none focus:border-indigo-600 focus:ring-4 focus:ring-indigo-100 bg-slate-50 font-mono"
               required
             />
@@ -105,10 +115,14 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({
 
           {/* Student Name Input */}
           <div>
-            <label className="block text-xs font-bold text-slate-700 mb-1.5">
+            <label
+              htmlFor="student-name-input"
+              className="block text-xs font-bold text-slate-700 mb-1.5"
+            >
               Nama Siswa / Panggilan
             </label>
             <input
+              id="student-name-input"
               type="text"
               value={studentName}
               onChange={(e) => setStudentName(e.target.value)}
@@ -120,10 +134,14 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({
 
           {/* Optional Team / Class Input */}
           <div>
-            <label className="block text-xs font-semibold text-slate-500 mb-1">
+            <label
+              htmlFor="team-name-input"
+              className="block text-xs font-semibold text-slate-500 mb-1"
+            >
               Nama Regu / Kelas (Opsional)
             </label>
             <input
+              id="team-name-input"
               type="text"
               value={teamName}
               onChange={(e) => setTeamName(e.target.value)}
@@ -162,8 +180,17 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({
             return (
               <div
                 key={g.id}
+                role="button"
+                tabIndex={0}
+                aria-label={`Pilih permainan ${g.title} dengan PIN ${g.code}`}
                 onClick={() => handleQuickSelectGame(g)}
-                className={`p-4 rounded-2xl border-2 cursor-pointer transition-all flex flex-col justify-between space-y-3 ${
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handleQuickSelectGame(g);
+                  }
+                }}
+                className={`p-4 rounded-2xl border-2 cursor-pointer transition-all flex flex-col justify-between space-y-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 ${
                   isCurrentPin
                     ? 'border-indigo-600 bg-indigo-50/50 shadow-xs ring-1 ring-indigo-500'
                     : 'border-slate-200 hover:border-indigo-300 bg-white hover:bg-slate-50/50'
