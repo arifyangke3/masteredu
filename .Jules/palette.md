@@ -1,0 +1,3 @@
+## 2026-11-11 - Accessible Interactive Cards and Explicit Form Label Associations
+**Learning:** Interactive game selection cards implemented as plain `div` tags with `onClick` exclude keyboard and assistive technology users from discovering and triggering quick-play presets. In addition, form inputs lacking explicit `id` and `htmlFor` pairings prevent screen readers from announcing field contexts reliably upon focus.
+**Action:** Always render interactive selection presets as `<button type="button">` with `aria-pressed`, descriptive `aria-label`, and `focus-visible` ring states, and pair every form input with an explicit `htmlFor` label and `role="alert"` validation message.
